@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit blog Post{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+
+    {% if user.id == post.author.id %}
+        <h1>Update Post</h1>
+        <br><br>
+        <!-- <div class="col-md-4"> -->
+        <div class="form-group">
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+        <!-- Django form in order how we use in admin area p can be changed to ul or table etc,It is used to create or update the values in form(database) -->
+            {{form.media}}
+            {{ form.as_p }}
+
+            <button class="btn btn-secondary">Post</button>
+
+        </form>
+        </div>
+<!-- </div> -->
+        {% else %}
+        Login first then only you can access
+        {% endif %}
+        
+{% else %}
+
+    Login first then only you can access
+    
+{% endif %}
+{% endblock %}

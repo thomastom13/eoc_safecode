@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Login{% endblock %}
+{% block content %}
+
+<h1>Login</h1>
+<br><br>
+<!-- <div class="col-md-4"> -->
+<div class="form-group">
+<form action="" method="post">
+    {% csrf_token %}
+<!-- Django form in order how we use in admin area p can be changed to ul or table etc -->
+    <!-- {{ form.as_p }} -->
+
+    <div class="form-group">
+        <input type="text" class="form-control" name="username" placeholder="Username" >
+    </div>
+
+    <div class="form-group">
+        <input type="password" name="password" class="form-control" id="" placeholder="Password" >
+    </div>
+
+    <button class="btn btn-secondary">Login</button>
+
+<br>
+</form>
+
+Not Registered? Sign Up <a href="{% url 'register' %}">Here</a>
+
+</div>
+<!-- </div> -->
+{% endblock %}
+

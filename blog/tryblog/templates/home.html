@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<!-- <div class="container">
+    <div class="row"> -->
+
+<h1>Blog </h1>
+<!-- operating_list is for querying all the sets in listview -->
+<ul>
+
+    
+    
+{% for post in object_list %}
+    <!-- <div class="card"> -->
+    <!-- {% if post.header_image %} -->
+    <!-- Image From folder -->
+        <!-- <img class="img-fluid  rounded"  src=" {{ post.header_image.url }}" height="50px" alt="Card-image" >   -->
+        <br>
+         
+        <!-- {% else %} -->
+        <!-- <img class="img-fluid  rounded"  src="{% static 'tryblog/images/profile-picture.png' %}" height="50px" alt="Card-image" >   -->
+        <!-- <br> -->
+        <!-- {% endif %} -->
+
+    <!-- <div class="card-body"> -->
+      <p class="card-text"><a href="{% url 'article-detail' post.pk %}"> {{post.title}}</a></p>
+    
+    
+     
+    <!-- <img src="/images/pathToYourImage.png" alt="Card image"> -->
+      <!-- <p class="card-text"> -->
+     <a href="{% url 'category' post.category|slugify %}">
+        -#{{ post.category }}</a>
+        -{{post.author.first_name}} {{ post.author.last_name}} -
+        {{ post.publication_date }}       
+        <small> 
+            
+        <!-- </p> -->
+
+            {% if user.is_authenticated %}
+                {% if user.id == post.author.id %}
+
+            -<a href="{% url 'update_post' post.pk %}">(Edit)</a>
+            
+            <a href="{% url 'delete_post' post.pk %}">(Delete)</a>
+                {% endif %}
+            {% endif %}
+        </small> 
+    <br>
+        {{post.snippet}}
+    <!-- {{post.body | slice:":200"|safe}} -->
+
+
+    <br>
+    {% endfor %}
+</ul>
+<!-- </div>
+
+</div>
+
+</div>
+</div>-->
+<!-- container -->
+
+<!-- {% for item in cat_menu %}
+{{ item }}<br>
+{% endfor %} -->
+<!-- {{cat_menu}} -->
+
+
+{% endblock %}

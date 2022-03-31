@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<h1>User Profile</h1>
+
+<!-- {{ page_user }} -->
+
+<br><br>
+
+{% if page_user.profile_pic %}
+<!-- User profile (put an if so the user dont have an facebook link it won't list) -->
+<img src="{{ page_user.profile_pic.url }}" class="rounded-circle" height="50px" alt="">
+
+{% else %}
+<img src="{% static 'tryblog/images/profile-picture.png' %}" class="rounded-circle" height="50px" alt="">
+
+{% endif  %}
+<h5>
+    {{ page_user.user.first_name }}
+    {{ page_user.user.last_name }}
+</h5>
+    <p class="small text-muted">
+
+    {#<!-- <a href="{% url 'show_profile_page' post.author.profile.id %}">Profile Page</a>| -->#}
+
+    {% if page_user.website_url %} 
+ | <a href="{{ page_user.website_url }}">Website</a> |
+{% endif %}
+{% if page_user.facebook_url %}
+<a href="{{ page_user.facebook_url }}">Facebook</a> |
+{% endif %}
+
+</p>
+
+
+
+
+{% endblock %}

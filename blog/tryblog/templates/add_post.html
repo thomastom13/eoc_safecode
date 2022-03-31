@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Create a new blog Post{% endblock %}
+{% block content %}
+
+{% if user.is_authenticated %}
+    <h1>AddBlog Post</h1>
+    <br><br>
+    <!-- <div class="col-md-4"> -->
+    <div class="form-group">
+    <form action="" method="POST" enctype="multipart/form-data" >
+        {% csrf_token %}
+    <!-- Django form in order how we use in admin area p can be changed to ul or table etc -->
+        {{ form.media}} <!-- This is used to show the Rich Text area with ckeditor -->
+        {{ form.as_p }}
+
+        <button class="btn btn-secondary">Post</button>
+
+    </form>
+    </div>
+    <script>
+        var name = "{{ user.id }}";
+        document.getElementById("user").value = name;
+
+
+    </script>
+
+{% else %}
+    First Login then procedd...
+
+{% endif %}
+<!-- </div> -->
+{% endblock %}
